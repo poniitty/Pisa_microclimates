@@ -7,7 +7,8 @@ library(lubridate) # Handles time objects nicely
 library(zoo) # For rolling functions
 library(data.table)
 
-d <- read_csv("output/tomst_data.csv")
+d <- read_csv("output/tomst_data.csv") %>% 
+  select(site, datetime, T1, T2, T3, moist, probl)
 
 # Change the datetime to Finnish time
 # This takes some time...
@@ -251,7 +252,7 @@ daily %>% group_by(site) %>%
 
 # Plot an example
 
-id_to_plot <- "AIL155"
+id_to_plot <- 1
 
 dd %>% filter(site == id_to_plot) %>%
   ggplot(aes_string(x="date")) +
@@ -325,7 +326,7 @@ daily %>% group_by(site) %>%
 
 
 # Plot an example site
-id_to_plot <- "AIL155"
+id_to_plot <- 1
 
 dd %>% filter(site == id_to_plot) %>%
   ggplot(aes_string(x="date")) +
